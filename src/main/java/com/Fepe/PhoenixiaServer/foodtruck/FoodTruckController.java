@@ -37,7 +37,7 @@ public class FoodTruckController {
         return ResponseEntity.created(createdUri).body(foodTruck);
     }
 
-    @DeleteMapping
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity deleteFoodTruck(@PathVariable Integer id) {
         this.foodTruckService.deleteFoodTruckById(id);
         return ResponseEntity.ok().body(id);
