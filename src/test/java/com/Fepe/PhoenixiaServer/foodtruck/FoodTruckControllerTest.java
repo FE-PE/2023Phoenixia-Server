@@ -20,8 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -67,10 +66,33 @@ class FoodTruckControllerTest {
     @Test
     public void findFoodTruckById() throws Exception {
 
-        mockMvc.perform(get("/api/foodtruck")
+        mockMvc.perform(get("/api/foodtruck/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void queryAllTrucks() throws Exception {
+        mockMvc.perform(get("/api/foodtruck")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void createFoodTruck() throws Exception {
+        FoodTruckDto foodTruckDto = FoodTruckDto.builder()
+                .name("aaa")
+                .description("bbb")
+                .imageUrl("ddd")
+                .build();
+
+        mockMvc.perform(post("/api/foodtruck")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(this.objectMapper.writeValueAsString(foodTruckDto)))
+                .andDo(print())
+                .andExpect(status().isCreated());
     }
 
     @Test
@@ -88,5 +110,26 @@ class FoodTruckControllerTest {
                         .content(this.objectMapper.writeValueAsString(menuDto)))
                 .andDo(print())
                 .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void deleteTruck() throws Exception {
+        FoodTruckDto foodTruckDto = FoodTruckDto.builder()
+                .name("aaa")
+                .description("bbb")
+                .imageUrl("ddd")
+                .build();
+        this.foodTruckService.createFoodTruck(foodTruckDto);
+
+        mockMvc.perform(delete("/api/foodtruck/2"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteMenu() throws Exception {
+        mockMvc.perform(delete("/api/foodtruck/1/menu/1"))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 }

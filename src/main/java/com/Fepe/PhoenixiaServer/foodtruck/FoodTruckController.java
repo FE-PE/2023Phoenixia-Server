@@ -56,8 +56,8 @@ public class FoodTruckController {
     }
 
     @DeleteMapping(value = "/{foodtruckId}/menu/{menuId}")
-    public ResponseEntity deleteMenu(@PathVariable Integer foodTruckId, @PathVariable Integer menuId) {
-        FoodTruck foodTruck = this.foodTruckService.findFoodTruckById(foodTruckId);
+    public ResponseEntity deleteMenu(@PathVariable Integer foodtruckId, @PathVariable Integer menuId) {
+        FoodTruck foodTruck = this.foodTruckService.findFoodTruckById(foodtruckId);
         Menu menu = this.menuService.findMenuById(menuId);
 
         foodTruck.getMenus().remove(menu);
