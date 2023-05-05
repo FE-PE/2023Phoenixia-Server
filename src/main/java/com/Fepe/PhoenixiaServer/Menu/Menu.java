@@ -1,10 +1,9 @@
 package com.Fepe.PhoenixiaServer.Menu;
 
+import com.Fepe.PhoenixiaServer.foodtruck.FoodTruck;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter @Builder
@@ -14,6 +13,7 @@ public class Menu {
 
     @Id
     @GeneratedValue
+    @Column(name = "MENU_ID")
     private Integer id;
 
     private String name;
@@ -21,4 +21,8 @@ public class Menu {
     private Integer price;
 
     private String imageUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "FOODTRUCK_ID")
+    private FoodTruck foodTruck;
 }
