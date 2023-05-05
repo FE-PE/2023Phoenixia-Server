@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 @Getter @Setter @Builder
@@ -11,6 +12,7 @@ import javax.persistence.GeneratedValue;
 @EqualsAndHashCode(of = "id")
 public class Menu {
 
+    @Id
     @GeneratedValue
     private Integer id;
 

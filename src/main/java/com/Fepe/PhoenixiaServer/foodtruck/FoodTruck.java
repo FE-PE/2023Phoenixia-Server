@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.List;
 
 @Entity
@@ -13,6 +14,7 @@ import java.util.List;
 @EqualsAndHashCode(of = "id")
 public class FoodTruck {
 
+    @Id
     @GeneratedValue
     private Integer id;
 
