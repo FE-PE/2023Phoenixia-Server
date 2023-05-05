@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -13,6 +14,7 @@ public class FoodTruckService {
     private final FoodTruckRepository foodTruckRepository;
     private final ModelMapper modelMapper;
 
+    @Transactional
     public FoodTruck createFoodTruck(FoodTruckDto foodTruckDto) {
         FoodTruck foodTruck = this.modelMapper.map(foodTruckDto, FoodTruck.class);
         return this.foodTruckRepository.save(foodTruck);

@@ -48,10 +48,10 @@ public class FoodTruckController {
     }
 
     @PostMapping(value = "/{id}/menu")
-    public ResponseEntity createMenu(@PathVariable Integer id, @RequestBody MenuDto menuDto) {
+    public ResponseEntity createMenu(@RequestBody MenuDto menuDto, @PathVariable Integer id) {
         FoodTruck foodTruck = this.foodTruckService.findFoodTruckById(id);
         Menu menu = this.menuService.createMenu(menuDto, foodTruck);
-        URI createdUri = linkTo(methodOn(FoodTruckController.class).createMenu(id, menuDto)).slash(foodTruck).toUri();
+        URI createdUri = linkTo(methodOn(FoodTruckController.class).createMenu(menuDto, id)).slash(foodTruck).toUri();
         return ResponseEntity.created(createdUri).body(menu);
     }
 

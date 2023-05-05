@@ -1,6 +1,8 @@
 package com.Fepe.PhoenixiaServer.foodtruck;
 
 import com.Fepe.PhoenixiaServer.Menu.Menu;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,15 +16,16 @@ import java.util.List;
 public class FoodTruck {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "FOODTRUCK_ID")
-    private Integer id;
+    private Integer truck_id;
 
     private String name;
 
     private String description;
 
-    @OneToMany(mappedBy = "foodTruck")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "foodTruck", fetch = FetchType.LAZY)
     private List<Menu> menus = new ArrayList<>();
 
     private String imageUrl;

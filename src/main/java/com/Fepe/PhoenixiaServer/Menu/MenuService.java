@@ -16,8 +16,12 @@ public class MenuService {
 
     public Menu createMenu(MenuDto menuDto, FoodTruck foodTruck) {
         Menu menu = this.modelMapper.map(menuDto, Menu.class);
+        Menu createdMenu = this.menuRepository.save(menu);
+
+        createdMenu.setFoodTruck(foodTruck);
         this.menuRepository.save(menu);
-        foodTruck.getMenus().add(menu);
+
+        foodTruck.getMenus().add(createdMenu);
         this.foodTruckRepository.save(foodTruck);
 
         return menu;
