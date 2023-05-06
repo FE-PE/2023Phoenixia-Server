@@ -1,3 +1,4 @@
+### [See Swagger](http://fepe.us-east-1.elasticbeanstalk.com/swagger-ui/index.html)
 <details>
     <summary> API Swagger Example </summary>
 
