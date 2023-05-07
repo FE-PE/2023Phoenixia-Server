@@ -13,6 +13,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/club")
+@CrossOrigin
 public class ClubController {
 
     private final ClubService clubService;

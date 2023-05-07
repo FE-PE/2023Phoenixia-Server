@@ -16,6 +16,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/foodtruck")
+@CrossOrigin
 public class FoodTruckController {
 
     private final FoodTruckService foodTruckService;
