@@ -66,4 +66,16 @@ public class FoodTruckController {
 
         return ResponseEntity.ok().body(menuId);
     }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity updateFoodTruck(@PathVariable Integer foodtruckId, @RequestBody FoodTruckDto foodTruckDto) {
+        FoodTruck foodTruck = this.foodTruckService.updateFoodTruck(foodtruckId, foodTruckDto);
+        return ResponseEntity.ok().body(foodTruck);
+    }
+
+    @PatchMapping(value = "/{foodtruckId}/menu/{menuId}")
+    public ResponseEntity updateMenu(@PathVariable Integer foodtruckId, @PathVariable Integer menuId, @RequestBody MenuDto menuDto) {
+        Menu menu = this.menuService.updateMenu(menuId, menuDto);
+        return ResponseEntity.ok().body(menu);
+    }
 }

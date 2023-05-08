@@ -42,4 +42,10 @@ public class ClubController {
         this.clubService.deleteClub(id);
         return ResponseEntity.ok().body(id);
     }
+
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity updateClub(@PathVariable Integer id, @RequestBody ClubDto clubDto) {
+        Club club = this.clubService.updateClub(id, clubDto);
+        return ResponseEntity.ok().body(club);
+    }
 }

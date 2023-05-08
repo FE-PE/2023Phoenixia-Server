@@ -1,5 +1,7 @@
 package com.Fepe.PhoenixiaServer.foodtruck;
 
+import com.Fepe.PhoenixiaServer.Menu.Menu;
+import com.Fepe.PhoenixiaServer.club.Club;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,14 @@ public class FoodTruckService {
         this.foodTruckRepository.delete(foodTruck);
 
         return id;
+    }
+
+    public FoodTruck updateFoodTruck(Integer truckId, FoodTruckDto foodTruckDto) {
+        FoodTruck foodTruck = this.findFoodTruckById(truckId);
+        foodTruck.setName(foodTruckDto.getName());
+        foodTruck.setDescription(foodTruckDto.getDescription());
+        foodTruck.setImageUrl(foodTruckDto.getImageUrl());
+
+        return this.foodTruckRepository.save(foodTruck);
     }
 }
