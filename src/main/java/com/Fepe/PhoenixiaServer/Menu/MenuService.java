@@ -38,4 +38,13 @@ public class MenuService {
 
         return id;
     }
+
+    public Menu updateMenu(Integer menuId, MenuDto menuDto) {
+        Menu menu = this.findMenuById(menuId);
+        menu.setName(menuDto.getName());
+        menu.setPrice(menuDto.getPrice());
+        menu.setImageUrl(menuDto.getImageUrl());
+
+        return this.menuRepository.save(menu);
+    }
 }

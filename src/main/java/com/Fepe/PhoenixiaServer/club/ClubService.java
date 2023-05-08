@@ -32,5 +32,15 @@ public class ClubService {
         return id;
     }
 
+    public Club updateClub(Integer clubId, ClubDto clubDto) {
+        Club club = this.findClubById(clubId);
+        club.setNumber(clubDto.getNumber());
+        club.setName(clubDto.getName());
+        club.setDescription(clubDto.getDescription());
+        club.setImageUrl(clubDto.getImageUrl());
+
+        return this.clubRepository.save(club);
+    }
+
 
 }
