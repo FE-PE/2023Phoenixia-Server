@@ -4,6 +4,7 @@ import com.Fepe.PhoenixiaServer.Menu.Menu;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class FoodTruck {
     private String description;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "foodTruck", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "foodTruck", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Menu> menus = new ArrayList<>();
 
     private String imageUrl;
