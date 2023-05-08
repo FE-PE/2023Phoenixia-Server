@@ -17,6 +17,8 @@ public class Club {
     private Integer id;
 
     private Integer number;
+    private String category;
+    private String imageUrl;
 
     private String name;
 

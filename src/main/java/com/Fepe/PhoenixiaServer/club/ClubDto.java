@@ -9,6 +9,8 @@ import lombok.*;
 public class ClubDto {
 
     private Integer number;
+    private String imageUrl;
+    private String category;
 
     private String name;
 
