@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 @EqualsAndHashCode(of = "guest_id")
 public class Guest {
-    @Id @GeneratedValue()
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GUEST_ID")
     private Long guest_id;
     private String nickname;

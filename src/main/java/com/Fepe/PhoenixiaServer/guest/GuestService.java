@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -12,6 +13,7 @@ public class GuestService {
     private final GuestRepository guestRepository;
     private final ModelMapper modelMapper;
 
+    @Transactional
     public Guest createGuestBook(GuestDto guestDto){
         Guest guest = modelMapper.map(guestDto, Guest.class);
         return guestRepository.save(guest);
