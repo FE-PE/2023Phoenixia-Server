@@ -78,4 +78,10 @@ public class FoodTruckController {
         Menu menu = this.menuService.updateMenu(menuId, menuDto);
         return ResponseEntity.ok().body(menu);
     }
+
+    @GetMapping(value = "/{foodtruckId}/menu/{menuId}")
+    public ResponseEntity getMenu(@PathVariable Integer foodtruckId, @PathVariable Integer menuId) {
+        Menu menu = this.menuService.findMenuById(menuId);
+        return ResponseEntity.ok().body(menu);
+    }
 }
