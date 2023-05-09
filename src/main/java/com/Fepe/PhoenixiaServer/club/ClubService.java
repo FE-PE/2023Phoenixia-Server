@@ -14,32 +14,32 @@ public class ClubService {
     private final ModelMapper modelMapper;
 
     public Club findClubById(Integer id) {
-        return this.clubRepository.findById(id)
+        return clubRepository.findById(id)
                 .orElseThrow(() -> new NullPointerException());
     }
 
     public List<Club> queryAllClubs() {
-        return this.clubRepository.findAll();
+        return clubRepository.findAll();
     }
 
     public Club createClub(ClubDto clubDto) {
-        Club club = this.modelMapper.map(clubDto, Club.class);
-        return this.clubRepository.save(club);
+        Club club = modelMapper.map(clubDto, Club.class);
+        return clubRepository.save(club);
     }
 
     public Integer deleteClub(Integer id) {
-        this.clubRepository.deleteById(id);
+        clubRepository.deleteById(id);
         return id;
     }
 
     public Club updateClub(Integer clubId, ClubDto clubDto) {
-        Club club = this.findClubById(clubId);
+        Club club = findClubById(clubId);
         club.setNumber(clubDto.getNumber());
         club.setName(clubDto.getName());
         club.setDescription(clubDto.getDescription());
         club.setImageUrl(clubDto.getImageUrl());
 
-        return this.clubRepository.save(club);
+        return clubRepository.save(club);
     }
 
 
