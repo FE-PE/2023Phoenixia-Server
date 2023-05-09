@@ -15,36 +15,36 @@ public class MenuService {
     private final ModelMapper modelMapper;
 
     public Menu createMenu(MenuDto menuDto, FoodTruck foodTruck) {
-        Menu menu = this.modelMapper.map(menuDto, Menu.class);
-        Menu createdMenu = this.menuRepository.save(menu);
+        Menu menu = modelMapper.map(menuDto, Menu.class);
+        Menu createdMenu = menuRepository.save(menu);
 
         createdMenu.setFoodTruck(foodTruck);
-        this.menuRepository.save(menu);
+        menuRepository.save(menu);
 
         foodTruck.getMenus().add(createdMenu);
-        this.foodTruckRepository.save(foodTruck);
+        foodTruckRepository.save(foodTruck);
 
         return menu;
     }
 
     public Menu findMenuById(Integer id) {
-        return this.menuRepository.findById(id)
+        return menuRepository.findById(id)
                 .orElseThrow(() -> new NullPointerException());
     }
 
     public Integer deleteMenuById(Integer id) {
-        Menu menu = this.findMenuById(id);
-        this.menuRepository.delete(menu);
+        Menu menu = findMenuById(id);
+        menuRepository.delete(menu);
 
         return id;
     }
 
     public Menu updateMenu(Integer menuId, MenuDto menuDto) {
-        Menu menu = this.findMenuById(menuId);
+        Menu menu = findMenuById(menuId);
         menu.setName(menuDto.getName());
         menu.setPrice(menuDto.getPrice());
         menu.setImageUrl(menuDto.getImageUrl());
 
-        return this.menuRepository.save(menu);
+        return menuRepository.save(menu);
     }
 }
