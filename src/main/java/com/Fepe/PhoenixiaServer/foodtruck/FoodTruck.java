@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Getter @Setter @Builder
 @AllArgsConstructor @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "truck_id")
 public class FoodTruck {
 
     @Id
@@ -27,7 +27,7 @@ public class FoodTruck {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "foodTruck", fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Menu> menus = new ArrayList<>();
+    private List<Menu> menus;
 
     private String imageUrl;
 

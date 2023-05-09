@@ -7,7 +7,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Getter @Builder
 public class FoodTruckDto {
 
     private String name;

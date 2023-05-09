@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Getter @Setter @Builder
 @AllArgsConstructor @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "menu_id")
 public class Menu {
 
     @Id
